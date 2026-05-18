@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights & Analysis — Superb Choice Lending Blog</title>
+  <meta name="description" content="Commercial finance insights from the advisor's desk. SBA vs conventional loans, working capital, MCA, equipment financing, and more." />
+  <meta name="geo.region" content="US-FL" />
+  <meta name="geo.placename" content="Boca Raton" />
+  <meta name="geo.position" content="26.3683;-80.1289" />
+  <meta name="ICBM" content="26.3683, -80.1289" />
+  <meta name="theme-color" content="#0E2A47" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Insights & Analysis — Superb Choice Lending Blog" />
+  <meta property="og:description" content="Commercial finance insights from the advisor's desk. SBA vs conventional loans, working capital, MCA, equipment financing, and more." />
+  <meta property="og:site_name" content="Superb Choice Lending" />
+  <meta property="og:url" content="https://superbchoicelending.com/blog.html" />
+  <link rel="canonical" href="https://superbchoicelending.com/blog.html" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- jsPDF for application PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#1F4D3A',
+            'forest-deep': '#163528',
+            navy: '#0E2A47',
+            'navy-deep': '#081B30',
+            gold: '#B8893E',
+            'gold-light': '#D4A85C',
+            'gold-soft': '#E8D3A8',
+            ivory: '#F4EFE3',
+            'ivory-warm': '#FAF6EC',
+            charcoal: '#1A1A1A',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+
+<style>
+  :root {
+    --forest: #1F4D3A;
+    --navy: #0E2A47;
+    --gold: #B8893E;
+    --ivory: #F4EFE3;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--navy);
+    background: #FAF6EC;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.005em;
+  }
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: -0.015em;
+  }
+  .texture-paper {
+    background-image: radial-gradient(circle at 1px 1px, rgba(14,42,71,0.022) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(184,137,62,0.4) 20%, rgba(184,137,62,0.9) 50%, rgba(184,137,62,0.4) 80%, transparent 100%);
+  }
+  .gold-divider-short {
+    width: 56px; height: 1px;
+    background: linear-gradient(90deg, var(--gold), rgba(184,137,62,0.2));
+  }
+
+  /* Form Fields */
+  .field { position: relative; }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 22px 16px 8px 16px;
+    background: #ffffff;
+    border: 1px solid rgba(14,42,71,0.14);
+    border-radius: 6px;
+    font-size: 15px;
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .field textarea { min-height: 110px; padding-top: 26px; resize: vertical; }
+  .field select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3e%3cpath fill='%230E2A47' opacity='0.5' d='M6 7.5L0.4 1.9 1.8 0.5 6 4.7 10.2 0.5 11.6 1.9z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px rgba(31,77,58,0.12);
+  }
+  .field label {
+    position: absolute; top: 16px; left: 16px;
+    font-size: 13px;
+    color: rgba(14,42,71,0.55);
+    pointer-events: none;
+    transition: all 0.2s ease;
+    font-weight: 400;
+  }
+  .field input:focus + label,
+  .field input:not(:placeholder-shown) + label,
+  .field select:focus + label,
+  .field select:valid + label,
+  .field textarea:focus + label,
+  .field textarea:not(:placeholder-shown) + label {
+    top: 6px; font-size: 10.5px;
+    color: var(--forest);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .field.invalid input, .field.invalid select, .field.invalid textarea {
+    border-color: #B8472D;
+    box-shadow: 0 0 0 3px rgba(184,71,45,0.08);
+  }
+  .field.valid input, .field.valid select {
+    border-color: rgba(31,77,58,0.4);
+  }
+  .field-error {
+    display: none;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #B8472D;
+    align-items: center;
+    gap: 5px;
+  }
+  .field.invalid .field-error { display: flex; }
+  .field-success-icon {
+    display: none;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--forest);
+    pointer-events: none;
+  }
+  .field.valid .field-success-icon { display: block; }
+
+  /* Buttons */
+  .btn-primary {
+    background: var(--forest); color: var(--ivory);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; overflow: hidden;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: #163528;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -10px rgba(31,77,58,0.45);
+  }
+  .btn-primary::before {
+    content: ''; position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(184,137,62,0.18), transparent);
+    transition: left 0.6s;
+  }
+  .btn-primary:hover::before { left: 100%; }
+  .btn-primary:disabled {
+    opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important;
+  }
+  .btn-outline {
+    background: transparent; color: var(--navy);
+    border: 1px solid rgba(14,42,71,0.2);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .btn-outline:hover {
+    border-color: var(--gold); color: var(--gold);
+    background: rgba(184,137,62,0.04);
+  }
+  .btn-outline:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* Loan/Industry card */
+  .loan-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(14,42,71,0.1);
+    background: #ffffff;
+  }
+  .loan-card:hover {
+    border-color: rgba(184,137,62,0.55);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px -16px rgba(14,42,71,0.18);
+  }
+
+  /* Step rail */
+  .step-rail { display: flex; align-items: center; gap: 0; width: 100%; }
+  .step-item {
+    display: flex; align-items: center; gap: 10px;
+    flex-shrink: 0; cursor: pointer; transition: opacity 0.2s;
+  }
+  .step-item.locked { cursor: not-allowed; opacity: 0.55; }
+  .step-circle {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1.5px solid rgba(14,42,71,0.18);
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500;
+    color: rgba(14,42,71,0.5);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+  .step-item.complete .step-circle {
+    background: var(--forest); border-color: var(--forest); color: var(--ivory);
+  }
+  .step-item.active .step-circle {
+    background: var(--navy); border-color: var(--navy); color: var(--ivory);
+    box-shadow: 0 0 0 4px rgba(14,42,71,0.08);
+  }
+  .step-label {
+    font-size: 12px; font-weight: 500;
+    color: rgba(14,42,71,0.55);
+    transition: color 0.2s; white-space: nowrap;
+  }
+  .step-item.active .step-label, .step-item.complete .step-label { color: var(--navy); }
+  .step-connector {
+    flex: 1; height: 1px;
+    background: rgba(14,42,71,0.12);
+    margin: 0 12px; position: relative;
+    overflow: hidden; min-width: 16px;
+  }
+  .step-connector::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--forest);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .step-connector.complete::after { transform: scaleX(1); }
+
+  /* Panels */
+  .panel { display: none; }
+  .panel.active {
+    display: block;
+    animation: panelIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateX(8px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .progress-fill {
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(90deg, var(--forest) 0%, var(--gold) 100%);
+  }
+
+  /* Drop zone */
+  .drop-zone {
+    border: 1.5px dashed rgba(184,137,62,0.5);
+    background: rgba(184,137,62,0.03);
+    transition: all 0.3s ease;
+  }
+  .drop-zone:hover, .drop-zone.drag-over {
+    border-color: var(--gold);
+    background: rgba(184,137,62,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -10px rgba(184,137,62,0.3);
+  }
+
+  /* Checkbox */
+  .check-box {
+    appearance: none;
+    width: 18px; height: 18px;
+    border: 1.5px solid rgba(14,42,71,0.3);
+    border-radius: 3px; cursor: pointer; flex-shrink: 0;
+    position: relative; background: #fff;
+    transition: all 0.2s ease;
+  }
+  .check-box:checked { background: var(--forest); border-color: var(--forest); }
+  .check-box:checked::after {
+    content: ''; position: absolute;
+    left: 5px; top: 1.5px;
+    width: 5px; height: 10px;
+    border: solid #fff; border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  /* Glass nav */
+  .glass {
+    background: rgba(250,246,236,0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  /* Spinner */
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid rgba(244,239,227,0.3);
+    border-top-color: var(--ivory);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Hero ornaments */
+  .ornament { position: absolute; border-radius: 50%; pointer-events: none; }
+
+  /* Trust badge */
+  .trust-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--forest);
+    box-shadow: 0 0 0 0 rgba(31,77,58,0.6);
+    animation: pulse 2.4s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(31,77,58,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(31,77,58,0); }
+    100% { box-shadow: 0 0 0 0 rgba(31,77,58,0); }
+  }
+
+  /* Fade animations */
+  .fade-in { animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.12s; }
+  .stagger-3 { animation-delay: 0.20s; }
+  .stagger-4 { animation-delay: 0.28s; }
+  .stagger-5 { animation-delay: 0.36s; }
+
+  /* Crest */
+  .crest {
+    width: 38px; height: 38px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--navy); border-radius: 4px; position: relative;
+  }
+  .crest::after {
+    content: ''; position: absolute; inset: 3px;
+    border: 1px solid rgba(184,137,62,0.6);
+    border-radius: 2px;
+  }
+
+  ::selection { background: rgba(184,137,62,0.3); color: var(--navy); }
+
+  /* Review summary list */
+  .review-row {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(14,42,71,0.06);
+  }
+  .review-row:last-child { border-bottom: none; }
+  .review-label {
+    font-size: 12px; color: rgba(14,42,71,0.55);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 500; flex-shrink: 0;
+  }
+  .review-value {
+    font-size: 14px; color: var(--navy);
+    font-weight: 500; text-align: right; word-break: break-word;
+  }
+
+  /* FAQ */
+  .faq-item {
+    border: 1px solid rgba(14,42,71,0.1);
+    border-radius: 8px;
+    background: white;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .faq-item.open { border-color: rgba(184,137,62,0.4); box-shadow: 0 8px 20px -8px rgba(14,42,71,0.08); }
+  .faq-trigger { width: 100%; text-align: left; padding: 18px 22px; display: flex; justify-content: space-between; gap: 16px; cursor: pointer; transition: background 0.2s; background: white; border: none; }
+  .faq-trigger:hover { background: rgba(184,137,62,0.04); }
+  .faq-icon {
+    width: 24px; height: 24px;
+    border: 1px solid rgba(14,42,71,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+  .faq-item.open .faq-icon {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: rotate(45deg);
+  }
+  .faq-icon svg { color: rgba(14,42,71,0.6); }
+  .faq-item.open .faq-icon svg { color: white; }
+  .faq-content {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .faq-item.open .faq-content { max-height: 500px; }
+  .faq-content-inner { padding: 0 22px 22px; font-size: 14px; line-height: 1.7; color: rgba(14,42,71,0.75); }
+
+  /* Signature Pad */
+  .signature-canvas {
+    width: 100%;
+    height: 180px;
+    background: white;
+    border: 1.5px dashed rgba(184,137,62,0.5);
+    border-radius: 6px;
+    cursor: crosshair;
+    touch-action: none;
+  }
+  .signature-canvas.signed { border-style: solid; border-color: var(--forest); background: rgba(31,77,58,0.02); }
+
+  /* Modal */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(14,42,71,0.65);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal-body {
+    background: #FAF6EC;
+    border-radius: 8px;
+    max-width: 32rem;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .modal-wide { max-width: 42rem; }
+
+  /* Blog */
+  .blog-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(14,42,71,0.1);
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card:hover {
+    border-color: rgba(184,137,62,0.55);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px -16px rgba(14,42,71,0.18);
+  }
+  .blog-img {
+    height: 180px;
+    background: linear-gradient(135deg, #0E2A47 0%, #163528 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-img-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, #B8893E40 1px, transparent 0);
+    background-size: 24px 24px;
+    opacity: 0.5;
+  }
+  .blog-content { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+
+  /* Article prose */
+  .prose-article h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: #0E2A47;
+    margin: 2.4rem 0 0.8rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .prose-article p {
+    color: rgba(14,42,71,0.78);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-headline { font-size: 2.5rem !important; line-height: 1.05 !important; }
+    .step-label { display: none; }
+    .step-connector { margin: 0 6px; }
+  }
+</style>
+
+</head>
+<body class="texture-paper">
+
+<header id="site-header" class="sticky top-0 z-50 glass border-b border-gold/30 transition-shadow">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="crest">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z" stroke="#B8893E" stroke-width="1.4"/>
+          <path d="M9 12l2 2 4-4" stroke="#B8893E" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="leading-tight">
+        <div class="font-display text-[19px] sm:text-[21px] text-navy font-semibold tracking-tight">Superb Choice Lending</div>
+        <div class="text-[10.5px] sm:text-[11px] text-navy/60 uppercase tracking-[0.18em] font-medium">Commercial Capital · Boca Raton, FL</div>
+      </div>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-6 text-[13px] text-navy/75 font-medium">
+      <!-- Programs dropdown -->
+      <div class="relative group">
+        <button class="hover:text-gold transition-colors flex items-center gap-1 py-2">
+          Programs
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="absolute top-full left-0 w-64 bg-white border border-gold/30 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 -mt-1">
+          <a href="working-capital.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Working Capital</span><span class="block text-[10px] uppercase tracking-[0.12em] text-navy/50 mt-0.5">Short-Term Liquidity</span></a><a href="term-loan.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Business Term Loan</span><span class="block text-[10px] uppercase tracking-[0.12em] text-navy/50 mt-0.5">Structured Debt</span></a><a href="line-of-credit.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Line of Credit</span><span class="block text-[10px] uppercase tracking-[0.12em] text-navy/50 mt-0.5">Revolving Facility</span></a><a href="mca.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Merchant Cash Advance</span><span class="block text-[10px] uppercase tracking-[0.12em] text-navy/50 mt-0.5">Revenue-Based</span></a><a href="equipment-financing.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Equipment Financing</span><span class="block text-[10px] uppercase tracking-[0.12em] text-navy/50 mt-0.5">Asset-Backed</span></a><a href="commercial-real-estate.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Commercial Real Estate</span><span class="block text-[10px] uppercase tracking-[0.12em] text-navy/50 mt-0.5">CRE Financing</span></a><a href="factoring.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Invoice Factoring</span><span class="block text-[10px] uppercase tracking-[0.12em] text-navy/50 mt-0.5">Receivables Sale</span></a><a href="ar-financing.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">A/R Financing</span><span class="block text-[10px] uppercase tracking-[0.12em] text-navy/50 mt-0.5">Receivables Loan</span></a>
+        </div>
+      </div>
+
+      <!-- Industries dropdown -->
+      <div class="relative group">
+        <button class="hover:text-gold transition-colors flex items-center gap-1 py-2">
+          Industries
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="absolute top-full left-0 w-64 bg-white border border-gold/30 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 -mt-1">
+          <a href="industry-construction.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Construction</span></a><a href="industry-healthcare.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Healthcare & Medical</span></a><a href="industry-real-estate.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Real Estate Investors</span></a><a href="industry-restaurants.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Restaurants & Hospitality</span></a><a href="industry-manufacturing.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Manufacturing</span></a><a href="industry-retail.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Retail & E-Commerce</span></a><a href="industry-trucking.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Trucking & Logistics</span></a><a href="industry-professional-services.html" class="block px-4 py-2 hover:bg-ivory-warm transition-colors text-[13px]"><span class="text-navy font-medium">Professional Services</span></a>
+        </div>
+      </div>
+
+      <a href="blog.html" class="text-gold transition-colors">Insights</a>
+      <a href="index.html#process" class="hover:text-gold transition-colors">Process</a>
+      <a href="index.html#contact" class="hover:text-gold transition-colors">Advisors</a>
+    </nav>
+
+    <a href="#application" class="hidden sm:inline-flex items-center gap-2 btn-primary px-5 py-2.5 rounded-md text-[13px] font-medium">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      Speak With An Advisor
+    </a>
+
+    <!-- Mobile menu button -->
+    <button class="lg:hidden p-2" onclick="toggleMobileMenu()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu drawer -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-ivory-warm border-t border-gold/30 px-5 py-4 space-y-3 text-[14px]">
+    <div class="text-[10px] uppercase tracking-[0.2em] text-gold font-semibold pt-1">Programs</div>
+    <a href="working-capital.html" class="block py-1.5 text-navy/80 hover:text-gold">Working Capital</a><a href="term-loan.html" class="block py-1.5 text-navy/80 hover:text-gold">Business Term Loan</a><a href="line-of-credit.html" class="block py-1.5 text-navy/80 hover:text-gold">Line of Credit</a><a href="mca.html" class="block py-1.5 text-navy/80 hover:text-gold">Merchant Cash Advance</a><a href="equipment-financing.html" class="block py-1.5 text-navy/80 hover:text-gold">Equipment Financing</a><a href="commercial-real-estate.html" class="block py-1.5 text-navy/80 hover:text-gold">Commercial Real Estate</a><a href="factoring.html" class="block py-1.5 text-navy/80 hover:text-gold">Invoice Factoring</a><a href="ar-financing.html" class="block py-1.5 text-navy/80 hover:text-gold">A/R Financing</a>
+    <div class="border-t border-navy/10 pt-3 text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">Industries</div>
+    <a href="industry-construction.html" class="block py-1.5 text-navy/80 hover:text-gold">Construction</a><a href="industry-healthcare.html" class="block py-1.5 text-navy/80 hover:text-gold">Healthcare & Medical</a><a href="industry-real-estate.html" class="block py-1.5 text-navy/80 hover:text-gold">Real Estate Investors</a><a href="industry-restaurants.html" class="block py-1.5 text-navy/80 hover:text-gold">Restaurants & Hospitality</a><a href="industry-manufacturing.html" class="block py-1.5 text-navy/80 hover:text-gold">Manufacturing</a><a href="industry-retail.html" class="block py-1.5 text-navy/80 hover:text-gold">Retail & E-Commerce</a><a href="industry-trucking.html" class="block py-1.5 text-navy/80 hover:text-gold">Trucking & Logistics</a><a href="industry-professional-services.html" class="block py-1.5 text-navy/80 hover:text-gold">Professional Services</a>
+    <div class="border-t border-navy/10 pt-3">
+      <a href="blog.html" class="block py-1.5 text-navy/80 hover:text-gold">Insights</a>
+      <a href="index.html#process" class="block py-1.5 text-navy/80 hover:text-gold">Process</a>
+      <a href="index.html#contact" class="block py-1.5 text-navy/80 hover:text-gold">Advisors</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  }
+</script>
+
+
+<section class="py-16 sm:py-20 relative overflow-hidden">
+  <div class="ornament" style="width:400px;height:400px;top:-140px;right:-120px;background:radial-gradient(circle,rgba(184,137,62,0.15) 0%,transparent 70%);"></div>
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 relative">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="text-[11px] uppercase tracking-[0.25em] text-gold font-medium mb-4">Insights & Analysis</div>
+      <h1 class="font-display text-[3rem] sm:text-5xl text-navy font-medium leading-[1.05]">From The <em class="text-gold font-light">Advisor's Desk.</em></h1>
+      <div class="mx-auto gold-divider-short mt-7 mb-7"></div>
+      <p class="text-navy/65 text-[16px] font-light">Strategic perspectives on commercial finance, capital structure, and the lending landscape — written by senior advisors at Superb Choice Lending.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      
+        <a href="blog-sba-vs-conventional-2025.html" class="loan-card rounded-md p-7 flex flex-col gap-3 fade-in stagger-1">
+          <div class="flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] font-semibold">
+            <span class="text-gold">Lending Strategy</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">Dec 15, 2025</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">8 min read</span>
+          </div>
+          <h2 class="font-display text-2xl text-navy font-medium leading-tight">SBA vs Conventional Business Loans: Which Is Right For You In 2026?</h2>
+          <p class="text-[14px] text-navy/65 leading-relaxed">A detailed comparison of SBA 7(a), SBA 504, and conventional bank financing — when each makes sense, what they cost, and how to choose.</p>
+          <div class="mt-auto pt-4 text-gold text-[13px] font-medium inline-flex items-center gap-1">Read article<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+      
+        <a href="blog-working-capital-guide.html" class="loan-card rounded-md p-7 flex flex-col gap-3 fade-in stagger-2">
+          <div class="flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] font-semibold">
+            <span class="text-gold">Working Capital</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">Dec 1, 2025</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">6 min read</span>
+          </div>
+          <h2 class="font-display text-2xl text-navy font-medium leading-tight">The Complete Guide to Working Capital Loans In 2026</h2>
+          <p class="text-[14px] text-navy/65 leading-relaxed">Everything you need to know about unsecured working capital: how it's priced, who qualifies, when it makes sense, and how to avoid the common pitfalls.</p>
+          <div class="mt-auto pt-4 text-gold text-[13px] font-medium inline-flex items-center gap-1">Read article<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+      
+        <a href="blog-equipment-financing-vs-leasing.html" class="loan-card rounded-md p-7 flex flex-col gap-3 fade-in stagger-3">
+          <div class="flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] font-semibold">
+            <span class="text-gold">Equipment</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">Nov 18, 2025</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">5 min read</span>
+          </div>
+          <h2 class="font-display text-2xl text-navy font-medium leading-tight">Equipment Financing vs Leasing: Tax, Cash, And Strategic Considerations</h2>
+          <p class="text-[14px] text-navy/65 leading-relaxed">The often-overlooked differences between equipment financing and leasing — and which one makes more financial sense for your business.</p>
+          <div class="mt-auto pt-4 text-gold text-[13px] font-medium inline-flex items-center gap-1">Read article<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+      
+        <a href="blog-mca-stacking-warning.html" class="loan-card rounded-md p-7 flex flex-col gap-3 fade-in stagger-4">
+          <div class="flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] font-semibold">
+            <span class="text-gold">Working Capital</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">Oct 22, 2025</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">7 min read</span>
+          </div>
+          <h2 class="font-display text-2xl text-navy font-medium leading-tight">The MCA Stacking Trap: Why Multiple Cash Advances Can Sink Your Business</h2>
+          <p class="text-[14px] text-navy/65 leading-relaxed">MCA stacking — taking multiple cash advances simultaneously — has bankrupted thousands of otherwise healthy businesses. Here's how to recognize the trap and exit it.</p>
+          <div class="mt-auto pt-4 text-gold text-[13px] font-medium inline-flex items-center gap-1">Read article<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+      
+        <a href="blog-cre-financing-options.html" class="loan-card rounded-md p-7 flex flex-col gap-3 fade-in stagger-5">
+          <div class="flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] font-semibold">
+            <span class="text-gold">Real Estate</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">Sep 30, 2025</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">9 min read</span>
+          </div>
+          <h2 class="font-display text-2xl text-navy font-medium leading-tight">Commercial Real Estate Financing: A Complete Guide To Programs And Strategies</h2>
+          <p class="text-[14px] text-navy/65 leading-relaxed">From SBA 504 to DSCR to bridge — the major CRE financing programs explained, with guidance on which to use when.</p>
+          <div class="mt-auto pt-4 text-gold text-[13px] font-medium inline-flex items-center gap-1">Read article<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+      
+        <a href="blog-business-credit-2025.html" class="loan-card rounded-md p-7 flex flex-col gap-3 fade-in stagger-1">
+          <div class="flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] font-semibold">
+            <span class="text-gold">Business Strategy</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">Sep 10, 2025</span>
+            <span class="w-1 h-1 rounded-full bg-navy/30"></span>
+            <span class="text-navy/55">6 min read</span>
+          </div>
+          <h2 class="font-display text-2xl text-navy font-medium leading-tight">How To Build Business Credit That Opens Capital Doors</h2>
+          <p class="text-[14px] text-navy/65 leading-relaxed">A practical guide to building business credit that's separate from your personal credit — and the capital access that follows.</p>
+          <div class="mt-auto pt-4 text-gold text-[13px] font-medium inline-flex items-center gap-1">Read article<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+      
+    </div>
+  </div>
+</section>
+
+
+<footer class="bg-navy-deep text-ivory/65 py-14 mt-0">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="crest"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z" stroke="#B8893E" stroke-width="1.4"/><path d="M9 12l2 2 4-4" stroke="#B8893E" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+          <div>
+            <div class="font-display text-lg text-ivory font-semibold">Superb Choice Lending</div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-ivory/45">Commercial Capital · Boca Raton, FL</div>
+          </div>
+        </div>
+        <p class="text-[13px] leading-[1.7] text-ivory/55 max-w-md">A boutique commercial finance brokerage placing structured capital for businesses, investors, and real estate operators across all 50 states.</p>
+        <div class="mt-5 space-y-1.5 text-[12px] text-ivory/55">
+          <div>1 Town Center Road, Suite 700, Boca Raton, FL 33486</div>
+          <div><a href="tel:+15619998888" class="hover:text-gold-light">(561) 999-8888</a> · <a href="mailto:advisors@superbchoicelending.com" class="hover:text-gold-light">advisors@superbchoicelending.com</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.2em] text-gold-light font-semibold mb-4">Programs</div>
+        <ul class="space-y-2 text-[13px]">
+          <li><a href="working-capital.html" class="hover:text-gold-light transition">Working Capital</a></li><li><a href="term-loan.html" class="hover:text-gold-light transition">Business Term Loan</a></li><li><a href="line-of-credit.html" class="hover:text-gold-light transition">Line of Credit</a></li><li><a href="mca.html" class="hover:text-gold-light transition">Merchant Cash Advance</a></li>
+          <li><a href="index.html#programs" class="hover:text-gold-light transition italic">View All →</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.2em] text-gold-light font-semibold mb-4">Industries</div>
+        <ul class="space-y-2 text-[13px]">
+          <li><a href="industry-construction.html" class="hover:text-gold-light transition">Construction</a></li><li><a href="industry-healthcare.html" class="hover:text-gold-light transition">Healthcare & Medical</a></li><li><a href="industry-real-estate.html" class="hover:text-gold-light transition">Real Estate Investors</a></li><li><a href="industry-restaurants.html" class="hover:text-gold-light transition">Restaurants & Hospitality</a></li>
+          <li><a href="blog.html" class="hover:text-gold-light transition italic">Insights →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="gold-divider mb-6 opacity-30"></div>
+    <div class="flex flex-col md:flex-row justify-between gap-3 text-[11px] text-ivory/40">
+      <div>© 2026 Superb Choice Lending. All rights reserved. Equal Opportunity Lender.</div>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-gold-light transition">Privacy</a>
+        <a href="#" class="hover:text-gold-light transition">Terms</a>
+        <a href="#" class="hover:text-gold-light transition">Licenses</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 glass border-t border-gold/40 px-4 py-3 flex gap-2.5">
+  <a href="index.html#contact" class="flex-1 btn-outline py-3 rounded-md text-[12px] font-medium text-center">Advisor</a>
+  <a href="#application" class="flex-1 btn-primary py-3 rounded-md text-[12px] font-medium text-center">Apply Now</a>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="hidden fixed bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 z-[90] bg-navy text-ivory px-5 py-3 rounded-md text-sm shadow-xl border border-gold/30 items-center gap-2.5">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A85C" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+  <span id="toast-msg">Saved.</span>
+</div>
+
+<script>
+  /* Shared util: toast */
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.remove('hidden');
+    t.classList.add('flex');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.classList.add('hidden'); t.classList.remove('flex'); }, 2800);
+  }
+
+  /* Header scroll shadow */
+  window.addEventListener('scroll', () => {
+    const h = document.getElementById('site-header');
+    if (!h) return;
+    if (window.scrollY > 8) h.style.boxShadow = '0 4px 20px -8px rgba(14,42,71,0.10)';
+    else h.style.boxShadow = '';
+  });
+</script>
+
+<script>
+const mmBtn = document.getElementById('mobile-menu-btn');
+const mm = document.getElementById('mobile-menu');
+if (mmBtn && mm) mmBtn.addEventListener('click', () => mm.classList.toggle('open'));
+window.addEventListener('scroll', () => {
+  const h = document.getElementById('site-header');
+  if (window.scrollY > 8) h.style.boxShadow = '0 4px 20px -8px rgba(14,42,71,0.10)';
+  else h.style.boxShadow = '';
+});
+</script>
+</body>
+</html>
